@@ -17,8 +17,24 @@
 			</div>
 		</div>
 		<div class="f-right">
-			<div class="f-logo"><img src="<?php echo get_template_directory_uri(); ?>/images/footer/mdbx_logo_tiny.svg" alt=""/></div>
-			<div class="f-kont"><strong>&#043;7 (812) 408-01-11</strong><br/>Комсомольский пр., д. 42, стр. 3<br/>Москва, 119048, Россия</div>
+			<div class="f-logo">
+				<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/footer/mdbx_logo_tiny.svg" alt=""/> -->
+				<?php
+					 $option= get_option('alex_upload_file_option');
+					 if( !empty($option['url_file2']) ) 
+					 {
+					 	echo "<a href='/'><img src='" . $option['url_file2'] . "' alt='logo' > </a> ";
+					 }
+					 //else echo "no logo image!";
+					 else echo "<img src='" . get_template_directory_uri() ."/images/footer/mdbx_logo_tiny.svg' alt='logo'>";
+				 ?>
+			</div>
+			<div class="f-kont"><strong>
+				<?php
+					 $option = get_option('alex_upload_file_option');
+					 if( !empty($option['phone']) ) echo $option['phone'];
+				 ?>
+			</strong><br/>Комсомольский пр., д. 42, стр. 3<br/>Москва, 119048, Россия</div>
 		</div>
 		
 		<div class="f-copy-m">
@@ -65,7 +81,12 @@
 <!-- модальное окно с телефоном -->
 <div id="modal_form2">
 	<div class="form-container">
-		<h2 class="fc-h2">&#043;7 (812) 408 01 11</h2>
+		<h2 class="fc-h2">
+				<?php
+					 $option = get_option('alex_upload_file_option');
+					 if( !empty($option['phone']) ) echo $option['phone'];
+				 ?>
+		</h2>
 	</div>
 </div>
 

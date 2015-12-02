@@ -19,10 +19,21 @@
 				<a href="#"><i class="fa fa-bars"></i><span>Меню</span></a>
 			</div>
 			<div class="h-logo-b">
-				<img src="<?php echo get_template_directory_uri(); ?>/images/head/mdbx_logo_blue.svg" alt=""/>
+				<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/head/mdbx_logo_blue.svg" alt=""/> -->
+
+				<?php
+					 $option= get_option('alex_upload_file_option');
+					 if( !empty($option['url_file']) ) 
+					 {
+					 	echo "<a href='/'><img src='" . $option['url_file'] . "' alt='logo' > </a> ";
+					 }
+					 //else echo "no logo image!";
+					 else echo "<img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_blue.svg' alt='logo'>";
+				 ?>
+
 			</div>
 			<div class="h-logo">
-				<img src="<?php echo get_template_directory_uri(); ?>/images/head/mdbx_logo_white.svg" alt=""/>
+				<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/head/mdbx_logo_white.svg" alt=""/> -->
 			</div>
 			<div class="h-menu">
 				<ul>
@@ -56,7 +67,13 @@
 				<a href="#"><i class="fa fa-phone"></i></a>
 			</div>
 			<div class="h-phone">
-				<span>+7 (812) 408 01 11</span>
+				<!-- <span>+7 (812) 408 01 11</span> -->
+				<span>
+				<?php
+					 $option = get_option('alex_upload_file_option');
+					 if( !empty($option['phone']) ) echo $option['phone'];
+				 ?>
+				 </span>
 			</div>
 		</div>
 	</div>

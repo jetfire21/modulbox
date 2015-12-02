@@ -19,13 +19,15 @@ function alex_upload_file(){
 // регистрация опций и генерация полей для ввода
 function alex_setting(){
 	register_setting( 'alex_options_group', 'alex_upload_file_option', 'alex_option_sanitize');
-	add_settings_section( 'alex_options_section', 'Upload logo', '', 'alex_upload_file_option');
+	add_settings_section( 'alex_options_section', 'Шапка', '', 'alex_upload_file_option');
+	add_settings_section( 'alex_options_section_footer', 'Подвал', '', 'alex_upload_file_option');
+	add_settings_section( 'alex_options_section_phone', 'Во всех блоках', '', 'alex_upload_file_option');
 	// add_settings_field('alex_color_bg_id', 'Цвет фона', 'alex_color_bg_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_color_bg_id') );
 	add_settings_field('alex_header_img_id', 'Добавить логотип', 'alex_header_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_header_img_id') );
 	add_settings_field('alex_del_header_img_id', 'Удалить логотип', 'alex_del_header_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_del_header_img_id') );
-	add_settings_field('alex_add_phone_id', 'Добавить телефон', 'alex_add_phone_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_add_phone_id') );
-	add_settings_field('alex_footer_img_id', 'Добавить логотип', 'alex_footer_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_footer_img_id') );
-	add_settings_field('alex_del_footer_img_id', 'Удалить логотип', 'alex_del_footer_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_del_footer_img_id') );
+	add_settings_field('alex_add_phone_id', 'Добавить телефон', 'alex_add_phone_cb',  'alex_upload_file_option', 'alex_options_section_phone', array('label_for' => 'alex_add_phone_id') );
+	add_settings_field('alex_footer_img_id', 'Добавить логотип', 'alex_footer_img_cb',  'alex_upload_file_option', 'alex_options_section_footer', array('label_for' => 'alex_footer_img_id') );
+	add_settings_field('alex_del_footer_img_id', 'Удалить логотип', 'alex_del_footer_img_cb',  'alex_upload_file_option', 'alex_options_section_footer', array('label_for' => 'alex_del_footer_img_id') );
 }
 
 function alex_color_bg_cb(){
@@ -66,7 +68,6 @@ function alex_header_img_cb(){
 function alex_footer_img_cb(){
 	$option = get_option('alex_upload_file_option' );
 	?>
-	<!-- <h3>Подвал</h3> -->
 	 <input type="file" id="alex_footer_img_id" name="uploadfile2"> 
 	<?php
 	if(!empty($option['url_file2'])){
@@ -131,7 +132,7 @@ function alex_option_sanitize($option){
 function alex_f_make_page(){
 	?>
 	<div class="wrap">
-		<h2>Options</h2>
+		<h2>Главные опции</h2>
 		<form action="options.php" method="post" enctype="multipart/form-data">
 			<?php settings_fields( 'alex_options_group' ); //выводит скрытые поля для проверки безопасности ?>
 			<?php do_settings_sections( 'alex_upload_file_option' ); // вывод всех полей связанный с секцией ?>

@@ -34,7 +34,12 @@
 					 $option = get_option('alex_upload_file_option');
 					 if( !empty($option['phone']) ) echo $option['phone'];
 				 ?>
-			</strong><br/>Комсомольский пр., д. 42, стр. 3<br/>Москва, 119048, Россия</div>
+				</strong><br/>
+				<!-- Комсомольский пр., д. 42, стр. 3<br/>Москва, 119048, Россия -->
+				<?php if(!dynamic_sidebar( 'footer' )):?>
+					<p>Не один видже не установлен!</p>
+				<?php endif;?>
+			</div>
 		</div>
 		
 		<div class="f-copy-m">

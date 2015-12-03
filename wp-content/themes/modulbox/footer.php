@@ -104,7 +104,6 @@
 
 			 wp_nav_menu( $args );
 	    ?>
-		<div class="clear"></div>
 		<!-- menu -->	
 
 	</div>

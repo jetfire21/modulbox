@@ -117,10 +117,20 @@ register_nav_menus( array(
   'header_menu' => 'main_menu'
 ) );
 
+register_nav_menus( array(
+  'category_location' => 'cat_menu'
+) );
+
 function change_submenu_class($menu) {  
   $menu = preg_replace('/ class="sub-menu"/','/ class="drop-menu-m" /',$menu);  
   return $menu;  
 }  
 add_filter('wp_nav_menu','change_submenu_class');  
+
+function additional_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'additional_mime_types');
 
 ?>

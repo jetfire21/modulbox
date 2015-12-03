@@ -29,13 +29,13 @@
 				  'after'           => '',
 				  'link_before'     => '',
 				  'link_after'      => '',
-				  'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
+				  'items_wrap'      => '<ul>%3$s <div class="clear"></div></ul>',
 				  'depth'           => 1
 				);
 
 				 wp_nav_menu( $args );
 		    ?>
-		    	<div class="clear"></div>
+		    	
 
 			</div>
 			<div class="f-copy">

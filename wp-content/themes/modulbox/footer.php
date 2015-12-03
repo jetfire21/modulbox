@@ -2,6 +2,7 @@
 	<div class="container">
 		<div class="f-left">
 			<div class="f-menu">
+<!-- 
 				<ul>
 					<li><a href="#">Каталог продукции</a></li>
 					<li><a href="#">Аренда</a></li>
@@ -11,6 +12,31 @@
 					<li><a href="#">Контакты</a></li>
 					<div class="clear"></div>
 				</ul>
+ -->			
+ 			<?php
+				
+				$args = array(
+				  'theme_location'  => 'header_menu',
+				  'menu'            => 'main-menu', 
+				  'container'       => '', 
+				  'container_class' => '', 
+				  'container_id'    => '',
+				  'menu_class'      => '', 
+				  'menu_id'         => '',
+				  'echo'            => true,
+				  'fallback_cb'     => 'wp_page_menu',
+				  'before'          => '',
+				  'after'           => '',
+				  'link_before'     => '',
+				  'link_after'      => '',
+				  'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
+				  'depth'           => 1
+				);
+
+				 wp_nav_menu( $args );
+		    ?>
+		    	<div class="clear"></div>
+
 			</div>
 			<div class="f-copy">
 				<span>Modulbox.ru © 2015 Все права защищены. <br/>Дизайн: <a href="#">Ханкина</a></span>
@@ -82,29 +108,36 @@
 			<li><a href="#">Контакты</a></li>
 		</ul>
  -->
-		<!-- menu -->
-		<?php
-			$args = array(
-			  'theme_location'  => 'header_menu',
-			  'menu'            => 'main-menu', 
-			  'container'       => '', 
-			  'container_class' => '', 
-			  'container_id'    => '',
-			  'menu_class'      => '', 
-			  'menu_id'         => '',
-			  'echo'            => true,
-			  'fallback_cb'     => 'wp_page_menu',
-			  'before'          => '',
-			  'after'           => '',
-			  'link_before'     => '',
-			  'link_after'      => '',
-			  'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
-			  'depth'           => 0
-			);
+			<!-- modal menu -->
+			<?php
+				
+				function change_submenu_class_m($menu) {  
+				  $menu = preg_replace('/ class="drop-menu"/','/ class="drop-menu-m" /',$menu);  
+				  return $menu;  
+				}  
+				add_filter('wp_nav_menu','change_submenu_class_m');
 
-			 wp_nav_menu( $args );
-	    ?>
-		<!-- menu -->	
+				$args = array(
+				  'theme_location'  => 'header_menu',
+				  'menu'            => 'main-menu', 
+				  'container'       => '', 
+				  'container_class' => '', 
+				  'container_id'    => '',
+				  'menu_class'      => '', 
+				  'menu_id'         => '',
+				  'echo'            => true,
+				  'fallback_cb'     => 'wp_page_menu',
+				  'before'          => '',
+				  'after'           => '',
+				  'link_before'     => '',
+				  'link_after'      => '',
+				  'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
+				  'depth'           => 0
+				);
+
+				 wp_nav_menu( $args );
+		    ?>
+			<!-- modal menu -->
 
 	</div>
 </div>

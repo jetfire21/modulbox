@@ -614,7 +614,7 @@ margin-left: -90px;
 	padding: 10px 25px;
 }
 
-.form-container > ul > li > a.a-cur, .form-container > ul > .current-menu-item a{
+.form-container > ul > li > a.a-cur {
 	border: 2px solid rgb(53, 128, 188);
 	text-decoration: none;
 	color: rgb(53, 128, 188);
@@ -1360,7 +1360,7 @@ margin-left: -90px;
 	margin-bottom: 50px !important;
 }
 
-.h-menu > ul > li.menu-current, .h-menu > ul > .current-menu-item {
+.h-menu > ul > li.menu-current {
 	background-color: #124182;
 	text-decoration: none;
 }

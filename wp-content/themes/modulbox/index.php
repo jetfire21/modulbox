@@ -21,12 +21,23 @@
 	<object type="image/svg+xml" class="c-bg" data="<?php echo get_template_directory_uri(); ?>/images/content/comb_bg.svg" fill="#f00" alt="The image wasn't found"></object>
 	<div class="container">
 		<div class="content-left">
+<!-- 
 			<h1>О компании</h1>
 			<p>Компания Modulbox имеет большой опыт в сфере производства быстро возводимых строений. Наша компания занимается собственным производсвом и продажей блок-контейнеров, модульных зданий, а также деревянных бытовок в Санкт-Петербурге и Ленинградской области.</p>
 
 			<p>Всегда рады приветствовать вас на нашей производственной площадке, где вы можете посмотреть и «пощупать» нашу продукцию. Там же вы можете сделать заказ и обсудить все в мельчайших подробностях.</p>
 
 			<p>В компании имеются собственные манипуляторы, которые доставят и установят ваш заказ в кратчайшие сроки. <strong>Быстро, выгодно, удобно!</strong></p>
+ -->			
+		    <?php if(have_posts() ): ?>
+		    <?php while(have_posts() ) : the_post();?>    
+		    		<h1><?php echo the_title(); ?></h1>    
+		           <?php the_content(); ?>
+		    <?php endwhile; ?>
+		    <?php else: ?>
+		       	<p>Контент еще не добавлен!</p>
+		    <?php endif; ?>	 
+
 		</div>
 		<div class="content-right">
 			<img src="<?php echo get_template_directory_uri(); ?>/images/content/V1_1.png" alt="Block" class="cr-image"/>

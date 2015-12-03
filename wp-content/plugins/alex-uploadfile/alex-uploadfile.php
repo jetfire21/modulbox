@@ -23,8 +23,11 @@ function alex_setting(){
 	add_settings_section( 'alex_options_section_footer', 'Подвал', '', 'alex_upload_file_option');
 	add_settings_section( 'alex_options_section_phone', 'Во всех блоках', '', 'alex_upload_file_option');
 	// add_settings_field('alex_color_bg_id', 'Цвет фона', 'alex_color_bg_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_color_bg_id') );
-	add_settings_field('alex_header_img_id', 'Добавить логотип', 'alex_header_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_header_img_id') );
-	add_settings_field('alex_del_header_img_id', 'Удалить логотип', 'alex_del_header_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_del_header_img_id') );
+
+	add_settings_field('alex_header_bigres_img_id', 'Добавить логотип (для белого фона)', 'alex_header_bigres_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_header_bigres_img_id') );
+	add_settings_field('alex_del_header_bigres_img_id', 'Удалить логотип', 'alex_del_header_bigres_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_del_header_bigres_img_id') );
+	add_settings_field('alex_header_img_id', 'Добавить логотип (для синего фона)', 'alex_header_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_header_img_id') );
+	add_settings_field('alex_del_header_img_id', 'Удалить логотип', 'alex_del_header_img_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_del_header_img_id') );	
 	add_settings_field('alex_add_phone_id', 'Добавить телефон', 'alex_add_phone_cb',  'alex_upload_file_option', 'alex_options_section_phone', array('label_for' => 'alex_add_phone_id') );
 	add_settings_field('alex_footer_img_id', 'Добавить логотип', 'alex_footer_img_cb',  'alex_upload_file_option', 'alex_options_section_footer', array('label_for' => 'alex_footer_img_id') );
 	add_settings_field('alex_del_footer_img_id', 'Удалить логотип', 'alex_del_footer_img_cb',  'alex_upload_file_option', 'alex_options_section_footer', array('label_for' => 'alex_del_footer_img_id') );
@@ -61,6 +64,18 @@ function alex_header_img_cb(){
 	if(!empty($option['url_file'])){
 		echo "<p><img src='{$option['url_file']}' alt='logo' width='200'></p>";
 	}
+	else echo "<p><img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_white.svg' alt='logo' style='max-width: 200px;
+    max-height: 70px;'></p>";
+}
+
+function alex_header_bigres_img_cb(){
+	$option = get_option('alex_upload_file_option' );
+	?>
+	 <input type="file" id="alex_header_bigres_img_id" name="uploadfile_bigres"> 
+	<?php
+	if(!empty($option['url_file_bigres'])){
+		echo "<p><img src='{$option['url_file_bigres']}' alt='logo' width='200'></p>";
+	}
 	else echo "<p><img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_blue.svg' alt='logo' style='max-width: 200px;
     max-height: 70px;'></p>";
 }
@@ -83,6 +98,12 @@ function alex_del_header_img_cb(){
 	<?php
 }
 
+function alex_del_header_bigres_img_cb(){
+	?>
+	 <input type="checkbox" name="del_header_bigres"> 
+	<?php
+}
+
 function alex_del_footer_img_cb(){
 	?>
 	 <input type="checkbox" name="del_footer"> 
@@ -91,7 +112,7 @@ function alex_del_footer_img_cb(){
 
 function alex_option_sanitize($option){
 
-/*** header logo ***/	
+/*** header logo <1650px ***/	
 
 	if( !empty($_FILES['uploadfile']['tmp_name'])  ){
 		$overrides = array('test_form' => false);
@@ -102,6 +123,19 @@ function alex_option_sanitize($option){
 	else{
 		$old_option = get_option('alex_upload_file_option' );
 		$option['url_file'] = $old_option['url_file'];
+	}
+
+	/*** header logo >1650px ***/	
+
+	if( !empty($_FILES['uploadfile_bigres']['tmp_name'])  ){
+		$overrides = array('test_form' => false);
+		$file = wp_handle_upload( $_FILES['uploadfile_bigres'], $overrides );
+		$option['url_file_bigres'] = $file['url'];
+		//print_r($file);
+	}
+	else{
+		$old_option = get_option('alex_upload_file_option' );
+		$option['url_file_bigres'] = $old_option['url_file_bigres'];
 	}
 
 /*** footer logo ***/
@@ -119,6 +153,10 @@ function alex_option_sanitize($option){
 
 	if($_POST['del_header'] == 'on'){
 		unset($option['url_file']);
+	}
+
+	if($_POST['del_header_bigres'] == 'on'){
+		unset($option['url_file_bigres']);
 	}
 
 	if($_POST['del_footer'] == 'on'){

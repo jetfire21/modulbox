@@ -57,6 +57,7 @@
 <div id="modal_form">	
 	<div class="form-container">
 		<h2 class="fc-h2">Меню</h2>
+<!-- 
 		<ul>
 			<li><a href="#">Каталог продукции</a>
 				<ul class="drop-menu-m">
@@ -80,6 +81,32 @@
 			<li><a href="#">Информация</a></li>
 			<li><a href="#">Контакты</a></li>
 		</ul>
+ -->
+		<!-- menu -->
+		<?php
+			$args = array(
+			  'theme_location'  => 'header_menu',
+			  'menu'            => 'main-menu', 
+			  'container'       => '', 
+			  'container_class' => '', 
+			  'container_id'    => '',
+			  'menu_class'      => '', 
+			  'menu_id'         => '',
+			  'echo'            => true,
+			  'fallback_cb'     => 'wp_page_menu',
+			  'before'          => '',
+			  'after'           => '',
+			  'link_before'     => '',
+			  'link_after'      => '',
+			  'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
+			  'depth'           => 0
+			);
+
+			 wp_nav_menu( $args );
+	    ?>
+		<div class="clear"></div>
+		<!-- menu -->	
+
 	</div>
 </div>
 

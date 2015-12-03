@@ -113,4 +113,14 @@ add_action( 'widgets_init', 'register_footer_address_widget' );
 /* *************** new custom widget *********** */
 
 
+register_nav_menus( array(
+  'header_menu' => 'main_menu'
+) );
+
+function change_submenu_class($menu) {  
+  $menu = preg_replace('/ class="sub-menu"/','/ class="drop-menu-m" /',$menu);  
+  return $menu;  
+}  
+add_filter('wp_nav_menu','change_submenu_class');  
+
 ?>

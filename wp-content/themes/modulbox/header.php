@@ -35,6 +35,7 @@
 			<div class="h-logo">
 				<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/head/mdbx_logo_white.svg" alt=""/> -->
 			</div>
+
 			<div class="h-menu">
 				<ul>
 					<li><a href="#">Каталог продукции</a>
@@ -60,7 +61,7 @@
 					<li><a href="#">Информация</a></li>
 					<li><a href="#">Контакты</a></li>
 					<div class="clear"></div>
-				</ul>
+				</ul>				
 			</div>
 			
 			<div class="h-phone-but">

@@ -35,7 +35,7 @@
 					 	echo $img_na_white = "<a href='/'><img src='" . $option['url_file_bigres'] . "' alt='logo' > </a> ";
 					 }
 					 //else echo "no logo image!";
-					 else echo $img_na_white = "<img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_blue.svg' alt='logo'>";
+					 else echo $img_na_white = "<a href='/'><img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_blue.svg' alt='logo'></a>";
 				 ?>
 
 			</div>
@@ -50,7 +50,7 @@
 						 	echo "<a href='/'><img src='" . $option['url_file'] . "' alt='logo' > </a> ";
 						 }
 						 //else echo "no logo image!";
-						 else echo "<img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_white.svg' alt='logo'>";
+						 else echo "<a href='/'><img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_white.svg' alt='logo'></a>";
 					}
 					else echo $img_na_white;
 

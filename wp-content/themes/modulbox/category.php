@@ -2,12 +2,6 @@
 	get_header(); ?>
 
 		<?php
-			// $cats = get_the_category();
-			// print_r($cats);
-			// $cat_id = $cats[0]->cat_ID;
-			// $cat_slug = $cats[0]->slug;
-			// $parent_cat = $cats[0]->parent;
-
 			$cats = get_category(get_query_var('cat'),false);
 			// print_r( $cats );
 			$cat_id = $catscat_ID;
@@ -17,10 +11,14 @@
 		
 		<!-- если это дочерняя категория,то выводим все записи -->
 		<?php if ($parent_cat != 0): ?>
-			<div class="head-center margin-top-block">
+
+				<?php require_once("single.php");?>
+			
+			<!-- категория каталога в разработке -->
+<!-- 			<div class="head-center margin-top-block">
 			<div class="container">
 				<div class="hc-top">
-					<!-- Садовые домики -->
+					Садовые домики
 					<?php
 					// проверяем количество рубрик
 					if( count($cats) == 1) { echo $cat_name = $cats->name; }
@@ -28,17 +26,7 @@
 					?>
 				</div>
 				<div class="hc-bottom t-center">
-
-				<!-- Раздел находится в разработке! Пожалуйста, зайдите позже.<br/><br/><br/> -->
-
-			    <?php if(have_posts() ): ?>
-			    <?php while(have_posts() ) : the_post();?>    
-			    		<h2><a href="<?php echo get_permalink(); ?>"><?php echo the_title(); ?></a></h2>    
-			    <?php endwhile; ?>
-			    <?php else: ?>
-			       	<p>Контент еще не добавлен!</p>
-			    <?php endif; ?>	
-
+				  Раздел находится в разработке! Пожалуйста, зайдите позже.<br/><br/><br/>
 					<a href="#" class="back-in">Вернуться в каталог</a>
 				</div>
 				<div class="clear"></div>
@@ -49,8 +37,9 @@
 				<div class="dev-item"><img src="images/head/garden_house.svg" alt=""/></div>
 			</div>
 		</div>
+	</header>  -->
+	<!-- категория каталога в разработке -->
 
-	</header> 
 
 
 <?php elseif($cat_slug == "catalog"):?>
@@ -131,6 +120,8 @@
 		<div class="header-bg-img"></div>
 	</header>
 
+
+
 <!-- если это родительская категория,то выводим самый последний пост и все статьи категории в левой колонке -->
 <?php else:?>
 
@@ -168,7 +159,7 @@
 				</ul>
  -->				
 
-
+			<!-- выводит все статьи категории -->
 			 <?php
 				$query = new WP_Query( array( 'category_name' => $cat_slug ) );
 			  ?>
@@ -184,7 +175,8 @@
 		    <?php else: ?>
 		       	<p>Контент еще не добавлен!</p>
 		    <?php endif; ?>	 
-
+			<!-- выводит все статьи категории -->
+			
 			</div>
 		</div>
 		<div class="content-right-info">
@@ -252,6 +244,6 @@
 	</div>
 </section>
 
-<?php endif;?>
-
 <?php get_footer(); ?>
+
+<?php endif;?>

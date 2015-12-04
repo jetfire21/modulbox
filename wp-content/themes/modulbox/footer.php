@@ -16,8 +16,8 @@
  			<?php
 				
 				$args = array(
-				  'theme_location'  => 'header_menu',
-				  'menu'            => 'main-menu', 
+				  'theme_location'  => 'footer_location',
+				  'menu'            => 'footer-menu', 
 				  'container'       => '', 
 				  'container_class' => '', 
 				  'container_id'    => '',

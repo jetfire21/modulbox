@@ -1365,12 +1365,12 @@ img.alignright{
 	margin-bottom: 50px !important;
 }
 
-.h-menu > ul > li.menu-current, .h-menu > ul > .current-menu-item {
+.h-menu > ul > li.menu-current, .h-menu > ul > .current-menu-item, .h-menu .current-menu-parent{
 	background-color: #124182;
 	text-decoration: none;
 }
 
-.vn-h-menu-color > ul > li.menu-current > a {
+.vn-h-menu-color > ul > li.menu-current > a, .vn-h-menu-color  .current-menu-item a, .vn-h-menu-color .current_page_item a, .vn-h-menu-color  .current-menu-parent a  {
 	color:#fff;
 	text-decoration: none;
 }

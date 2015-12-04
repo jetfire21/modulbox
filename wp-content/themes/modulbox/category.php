@@ -2,21 +2,28 @@
 	get_header(); ?>
 
 		<?php
-			$cats = get_the_category();
-			$cat_id = $cats[0]->cat_ID;
-			$cat_slug = $cats[0]->slug;
-			$parent_cat = $cats[0]->parent;
+			// $cats = get_the_category();
+			// print_r($cats);
+			// $cat_id = $cats[0]->cat_ID;
+			// $cat_slug = $cats[0]->slug;
+			// $parent_cat = $cats[0]->parent;
+
+			$cats = get_category(get_query_var('cat'),false);
+			// print_r( $cats );
+			$cat_id = $catscat_ID;
+			$cat_slug = $cats->slug;
+			$parent_cat = $cats->parent;
 		?>
 		
+		<!-- если это дочерняя категория,то выводим все записи -->
 		<?php if ($parent_cat != 0): ?>
-
 			<div class="head-center margin-top-block">
 			<div class="container">
 				<div class="hc-top">
 					<!-- Садовые домики -->
 					<?php
 					// проверяем количество рубрик
-					if( count($cats) == 1) { echo $cat_name = $cats[0]->name; }
+					if( count($cats) == 1) { echo $cat_name = $cats->name; }
 					else echo "Нет записей относящихся только к данной категории";						
 					?>
 				</div>
@@ -46,7 +53,85 @@
 	</header> 
 
 
+<?php elseif($cat_slug == "catalog"):?>
 
+
+
+	<div class="head-center margin-top-block">
+		<div class="container">
+<!-- 
+			<div class="hc-top">Каталог продукции</div>
+			<div class="hc-bottom">Компания «ModulBox» предлагает большой выбор сооружений собственного производства.<br/>
+				В распоряжении «ModulBox» находится собственная площадка для изготовления различных конструкций и их элементов.<br/>
+				Наш многолетний опыт и профессионализм позволяют выполнять сооружения любой сложности на заказ. 
+			</div>
+ -->		
+ 			<div class="hc-top"><?php echo $cats->name;?></div>
+ 			<div class="hc-bottom"><?php echo $cats->description;?></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+		<div class="head-bottom">
+			<div class="container-1780">
+				<!--<div class="control-prev next"></div>-->
+				<div class="carusel">
+
+					<?php
+					/* ****** без плагина Taxonomy Images в рубриках не будет возможности добавить изображение******** */
+					$cat = get_category_by_slug( 'catalog' );
+
+					$args = array(
+						'parent' => '',
+						'child_of' => $cat->cat_ID,
+						'hide_empty' => 0,
+						'exclude' => '', // ID рубрики, которую нужно исключить
+						'number' => '0',
+						'taxonomy' => 'category', // таксономия, для которой нужны изображения
+						'pad_counts' => true
+					);
+					$catlist = get_categories($args); // получаем список рубрик
+					 
+					foreach($catlist as $categories_item)
+						{
+						// получаем данные из плагина Taxonomy Images
+						$terms = apply_filters('taxonomy-images-get-terms', '', array(
+							'taxonomy' => 'category' // таксономия, для которой нужны изображения
+						));
+						if (!empty($terms))
+							{
+							$i = 1;
+							foreach((array)$terms as $term)
+								{
+								if ($term->term_id == $categories_item->term_id)
+									{
+									// выводим изображение рубрики (изображение не прикрепится если рубрика не имеет ни 1 записи)
+									$html =
+									'<a href="' . esc_url(get_term_link($term, $term->taxonomy)) . '" title="Нажмите, чтобы перейти в рубрику">
+									     <div class="c-item">' 
+									     . wp_get_attachment_image($term->image_id, 'thumbnail') . '<span>'. $categories_item->cat_name . '</span>
+									     </div>
+									 </a>';
+									 $html = str_replace('width="1"', '', $html);
+									 $html = str_replace('height="1"', '', $html);
+									 if( $i == count($terms)-1 ) $html = str_replace('class="attachment-thumbnail"', 'class="sea"', $html);
+									 if( $i == count($terms)-0 ) $html = str_replace('class="attachment-thumbnail"', 'class="bru"', $html);
+									 echo $html;								
+									}
+									$i++;
+								}							 
+							}						
+					// выводим описание и название рубрики
+					// echo "<a href=\"#\">" . $categories_item->cat_name . "</a> . $categories_item->category_description . ";
+					}
+		   		 ?>
+				<!-- <div class="clear"></div> -->
+			</div>
+		</div>
+
+		<div class="header-bg-img"></div>
+	</header>
+
+<!-- если это родительская категория,то выводим самый последний пост и все статьи категории в левой колонке -->
 <?php else:?>
 
 

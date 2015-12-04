@@ -11,9 +11,16 @@
 	
 </head>
 <body>
-<header class="padd-block"> 
-	
-	<div class="head-top">
+
+<!-- <header class="padd-block">  -->
+
+<?php if(is_page()):?>
+	<header class="resized">    
+<? else:?>
+<header class="padd-block">    
+	<div class="header-bg-img"></div>
+<? endif;?>
+		<div class="head-top vn-white">
 		<div class="container-1780">
 			<div class="h-menu-but">
 				<a href="#"><i class="fa fa-bars"></i><span>Меню</span></a>
@@ -25,27 +32,33 @@
 					 $option= get_option('alex_upload_file_option');
 					 if( !empty($option['url_file_bigres']) ) 
 					 {
-					 	echo "<a href='/'><img src='" . $option['url_file_bigres'] . "' alt='logo' > </a> ";
+					 	echo $img_na_white = "<a href='/'><img src='" . $option['url_file_bigres'] . "' alt='logo' > </a> ";
 					 }
 					 //else echo "no logo image!";
-					 else echo "<img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_blue.svg' alt='logo'>";
+					 else echo $img_na_white = "<img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_blue.svg' alt='logo'>";
 				 ?>
 
 			</div>
 			<div class="h-logo">
 				<!-- <img src="<?php echo get_template_directory_uri(); ?>/images/head/mdbx_logo_white.svg" alt=""/>  -->
 				<?php
-					 $option= get_option('alex_upload_file_option');
-					 if( !empty($option['url_file']) ) 
-					 {
-					 	echo "<a href='/'><img src='" . $option['url_file'] . "' alt='logo' > </a> ";
-					 }
-					 //else echo "no logo image!";
-					 else echo "<img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_white.svg' alt='logo'>";
+					if( is_front_page() ){
+
+						 $option= get_option('alex_upload_file_option');
+						 if( !empty($option['url_file']) ) 
+						 {
+						 	echo "<a href='/'><img src='" . $option['url_file'] . "' alt='logo' > </a> ";
+						 }
+						 //else echo "no logo image!";
+						 else echo "<img src='" . get_template_directory_uri() ."/images/head/mdbx_logo_white.svg' alt='logo'>";
+					}
+					else echo $img_na_white;
+
 				 ?>				
 			</div>
+			
+			<div class="h-menu vn-h-menu-color">
 
-			<div class="h-menu">
 <!-- 				
 					<ul>
 					<li><a href="#">Каталог продукции</a>
@@ -109,7 +122,7 @@
 			<div class="h-phone-but">
 				<a href="#"><i class="fa fa-phone"></i></a>
 			</div>
-			<div class="h-phone">
+			<div class="h-phone vn-h-phone">
 				<!-- <span>+7 (812) 408 01 11</span> -->
 				<span>
 				<?php
@@ -118,6 +131,7 @@
 				 ?>
 				 </span>
 			</div>
+
 		</div>
 	</div>
 

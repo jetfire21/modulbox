@@ -1,6 +1,4 @@
 <?php
-
-
 	get_header(); ?>
 
 		<div class="head-center margin-top-block">
@@ -9,7 +7,10 @@
 				<!-- Садовые домики -->
 				<?php
 				$cats = get_the_category();
-				echo $cat_name = $cats[0]->name;
+				// print_r($cats);
+				// проверяем количество рубрик
+				if( count($cats) == 1) { echo $cat_name = $cats[0]->name; }
+				else echo "Нет записей относящихся только к данной категории";						
 				?>
 			</div>
 			<div class="hc-bottom t-center">

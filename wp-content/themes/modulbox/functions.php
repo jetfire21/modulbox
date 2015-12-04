@@ -66,6 +66,18 @@ register_sidebar(
         ) 
  );
 
+register_sidebar(
+         array(
+          'name' => 'Главная: Правая колонка',
+          'id' => 'offer_honme',
+          'description' => 'Добавьте сюда виджеты',
+          'before_widget' => '',
+          'after_widget' => '',
+          'before_title' => '',
+          'after_title' => ''
+        ) 
+ );
+
 /* *************** new custom widget *********** */
 
 class FooterAddress_Widget extends WP_Widget {
@@ -111,6 +123,70 @@ function register_footer_address_widget() {
 add_action( 'widgets_init', 'register_footer_address_widget' );
 
 /* *************** new custom widget *********** */
+
+/* *************** new custom widget for add headings in part header *********** */
+
+class Offer_Widget extends WP_Widget {
+
+  function __construct() {
+    parent::__construct(
+      'offer_widget', // Base ID
+      'Спецпредложение', // Name
+      array( 'description' => 'Спецпредложение на главной странице')// Args
+    );
+  }
+
+  public function widget( $args, $instance ) {
+     extract($instance);
+        
+        if($link_img) echo '<img src="'.$link_img.'" alt="Block" class="cr-image"/>';
+        if($date) echo '<h1>' . $date . '</h1>';
+        if($product) echo '<h3>' . $product . '</h3>';
+        if($price) echo '<h2>' . $price . ' <span>Г</span></h2>';
+        if($link_product) echo '<a class="podr-but" href="'.$link_product.'">Подробнее о продукте</a>';
+
+  }
+
+  public function form( $instance ) {
+    extract($instance);
+
+    ?>
+
+    <p>
+    <label for="<?php echo $this->get_field_id( 'date' ); ?>">Дата окончания:</label> 
+    <input class="widefat" id="<?php echo $this->get_field_id( 'date' ); ?>" name="<?php echo $this->get_field_name( 'date' ); ?>" type="text" 
+    value="<?php if($date) { echo esc_attr( $date ); }?>">
+
+     <label for="<?php echo $this->get_field_id( 'product' ); ?>">Название продукта:</label> 
+    <input class="widefat" id="<?php echo $this->get_field_id( 'product' ); ?>" name="<?php echo $this->get_field_name( 'product' ); ?>"
+    value="<?php if($product) { echo esc_attr( $product); }?>" />
+
+     <label for="<?php echo $this->get_field_id( 'price' ); ?>">Цена:</label> 
+    <input class="widefat" id="<?php echo $this->get_field_id( 'price' ); ?>" name="<?php echo $this->get_field_name( 'price' ); ?>"
+         value="<?php if($price) { echo esc_attr( $price); }?>" />
+
+   <label for="<?php echo $this->get_field_id( 'link_product' ); ?>">Ссылка на продукт:</label> 
+    <input class="widefat" id="<?php echo $this->get_field_id( 'link_product' ); ?>" name="<?php echo $this->get_field_name( 'link_product' ); ?>" type="text" 
+     value="<?php if($link_product) { echo esc_attr( $link_product); }?>">
+    </p>
+
+   <label for="<?php echo $this->get_field_id( 'link_img' ); ?>">Ссылка на изображение:</label> 
+    <input class="widefat" id="<?php echo $this->get_field_id( 'link_img' ); ?>" name="<?php echo $this->get_field_name( 'link_img' ); ?>" type="text"
+    value="<?php if($link_img) { echo esc_attr( $link_img); }?>">
+    </p>
+
+    <?php 
+  }
+
+} 
+
+function register_offer_widget() {
+  register_widget( 'Offer_Widget' );
+}
+add_action( 'widgets_init', 'register_offer_widget' );
+
+
+/* *************** end new custom widget for add contacts in top part header *********** */
 
 
 register_nav_menus( array(

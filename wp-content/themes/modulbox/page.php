@@ -124,12 +124,17 @@
 
 		</div>
 		<div class="content-right">
+<!-- 
 			<img src="<?php echo get_template_directory_uri(); ?>/images/content/V1_1.png" alt="Block" class="cr-image"/>
 			<h1>Только до 30 ноября:</h1>
 			<h3>Блок-контейнер 6м –</h3>
-			<h2>42 000 <span>Г</span></h2>
-			
+			<h2>42 000 <span>Г</span></h2>		
 			<a class="podr-but" href="#">Подробнее о продукте</a>
+ -->
+			<?php if(!dynamic_sidebar( 'offer_honme' )):?>
+				<p>Не один видже не установлен!</p>
+			<?php endif;?>
+						
 		</div>
 		<div class="clear"></div>
 	</div>

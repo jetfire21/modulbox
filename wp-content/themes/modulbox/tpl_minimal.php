@@ -10,7 +10,7 @@ dark-blue background
 
 	<!--<div class="head-center no-marg">-->
 		<div class="hc-left-full">
-			<img class="deliv-img" src="images/head/deliv-bg.jpg" alt=""/>
+			<img class="deliv-img" src="<?php echo get_template_directory_uri(); ?>/images/head/deliv-bg.jpg" alt=""/>
 		</div>
 		<div class="hc-right-full">
 			<div class="right-container">

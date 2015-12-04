@@ -1285,9 +1285,14 @@ margin-left: -90px;
 	text-decoration: none;
 }
 
-.cr-text > p > img {
+.cr-text > p > img, img.alignleft{
 	float: left;
 	margin-right: 45px;
+}
+
+img.alignright{
+	float: right;
+	margin-left: 45px;
 }
 
 .preim-vn {

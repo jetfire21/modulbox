@@ -20,20 +20,20 @@ get_header(); ?>
 	</div>
 </header>
 
-<?php //echo $cats->cat_ID."-----------------------------"; ?>
+<?php //echo $cats_in_post[0]->slug."-----------------------------"; ?>
 <?php //echo "<pre>"; print_r($cats); echo "</pre>";?>
 <?php //echo "<pre>"; print_r($cats_in_post); echo "</pre>";?>
 
-
 <section class="content">
-	<object type="image/svg+xml" class="c-bg" data="images/content/comb_bg.svg" fill="#f00" alt="The image wasn't found"></object>
+	<object type="image/svg+xml" class="c-bg" data="<?php echo get_template_directory_uri(); ?>/images/content/comb_bg.svg" fill="#f00" alt="The image wasn't found"></object>
 	<div class="container">
 		<div class="content-left-menu itemsvn">
 			<div class="cl-menu">
 				
 				<!-- выводит все статьи категории -->
 				 <?php
-					$query = new WP_Query( array( 'category_name' => $cats->slug ) );
+				 	$slug = ( !is_category() ) ? $cats_in_post[0]->slug : $cats->slug ;
+					$query = new WP_Query( array( 'category_name' => $slug ) );
 				  ?>
 				 <?php $cur_post_id = get_the_ID();?>
 			    <?php if($query->have_posts() ): ?>
@@ -62,41 +62,44 @@ get_header(); ?>
 			
 			<?php if( !is_category() ): ?>
 
-				<?php if(have_posts() ): ?>
-				<?php while(have_posts() ) : the_post();?>   
-				<div class="cr-title"> 
-						<h1><?php echo the_title(); ?></h1> 
-						<a class="cr-but" href="#"><i class="cr-calc"></i>Оформить заказ</a>
-					<div class="clear"></div>
-				</div>   
-				       <?php the_content(); ?>
-				<?php endwhile; ?>
-				<?php else: ?>
-				   	<p>Контент еще не добавлен!</p>
-				<?php endif; ?>	
+					<?php if(have_posts() ): ?>
+					<?php while(have_posts() ) : the_post();?>   
+					<div class="cr-title"> 
+							<h1><?php echo the_title(); ?></h1> 
+							<a class="cr-but" href="#"><i class="cr-calc"></i>Оформить заказ</a>
+						<div class="clear"></div>
+					</div> 
+
+					       <?php the_content(); ?>
+
+					<?php endwhile; ?>
+					<?php else: ?>
+					   	<p>Контент еще не добавлен!</p>
+					<?php endif; ?>	
 			
 			<?php else: ?>	
 
-				  <!-- Выводит последнюю статью категории -->
-				  <?php
+					  <!-- Выводит последнюю статью категории -->
+					  <?php
 
-					$latest_cat_post = new WP_Query( array('posts_per_page' => 1, 'category__in' => array($cats->cat_ID)) );
+						$latest_cat_post = new WP_Query( array('posts_per_page' => 1, 'category__in' => array($cats->cat_ID)) );
 
-					if( $latest_cat_post->have_posts() ) : 
-						while( $latest_cat_post->have_posts() ) : $latest_cat_post->the_post();
-				  ?>
-					<div class="cr-title">
-						<h1><?php echo the_title(); ?></h1>
-						<div class="clear"></div>
-					</div>	
-					<div class="cr-text">	    		 
-			           <?php the_content(); ?>
-			        </div>
-					   <?php endwhile; ?>
-				    <?php else: ?>
-				       	<p>Контент еще не добавлен!</p>
-				    <?php endif; ?>	 
-				  <!-- Выводит последнюю статью категории -->
+						if( $latest_cat_post->have_posts() ) : 
+							while( $latest_cat_post->have_posts() ) : $latest_cat_post->the_post();
+					  ?>
+						<div class="cr-title">
+							<h1><?php echo the_title(); ?></h1>
+							<a class="cr-but" href="#"><i class="cr-calc"></i>Оформить заказ</a>
+							<div class="clear"></div>
+						</div>	
+						<!-- <div class="cr-text">	    		  -->
+				           <?php the_content(); ?>
+				        <!-- </div> -->
+						   <?php endwhile; ?>
+					    <?php else: ?>
+					       	<p>Контент еще не добавлен!</p>
+					    <?php endif; ?>	 
+					  <!-- Выводит последнюю статью категории -->
 				
 			<?php endif; ?>	
 
@@ -106,6 +109,6 @@ get_header(); ?>
 	</div>
 </section>
 
-<?php get_footer(); ?>
+<?php get_footer();?>
 
 

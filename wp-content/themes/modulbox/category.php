@@ -4,7 +4,7 @@
 		<?php
 			$cats = get_category(get_query_var('cat'),false);
 			// print_r( $cats );
-			$cat_id = $catscat_ID;
+			$cat_id = $cats->cat_ID;
 			$cat_slug = $cats->slug;
 			$parent_cat = $cats->parent;
 		?>
@@ -176,7 +176,7 @@
 		       	<p>Контент еще не добавлен!</p>
 		    <?php endif; ?>	 
 			<!-- выводит все статьи категории -->
-			
+
 			</div>
 		</div>
 		<div class="content-right-info">

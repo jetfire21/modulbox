@@ -204,4 +204,58 @@ function additional_mime_types($mimes) {
 }
 add_filter('upload_mimes', 'additional_mime_types');
 
+
+
+function my_shortcode_function($atts,$content = null) {
+    // var_dump($atts);
+    $row = explode(";", $content);
+    unset( $row[count($row)-1] );
+    // print_r($row);
+
+    $html .= '<section id="flip-scroll">
+                  <table class="cr-table1" cellspacing="0"><thead>';
+    $i = 1;
+    foreach ($row as $el) {
+        $cell = explode("|", $el);
+
+
+        if($i == 1) {
+
+            $html .= '<tr class="row-title">';
+            $j = 1;
+             foreach ($cell as $item) {
+               if($j == 1 ) $html .= '<th class="t1-name">'.$item. '</th>';
+               if($j == 2 ) $html .= '<th class="t1-sost">'.$item. '</th>';
+               if($j == 3 ) $html .= '<th class="t1-cost">'.$item. '</th>';
+               if($j > 3)  $html .= '<th class="t1-cost">'.$item. '</th>';
+                $j++;
+             }
+            
+             $html .= "</tr></thead><tbody>";
+
+        } else{
+
+          $html .= '
+                      <tr class="row-info">';
+            $k = 1;
+           foreach ($cell as $item) {
+              if($k == 1 ) $html .= '<td class="t1-name">'.$item. '</td>';
+               if($k == 2 ) $html .= '<td class="t1-sost">'.$item. '</td>';
+               if($k == 3 ) $html .= '<td class="t1-cost">'.$item. '</td>';
+               if($k > 3)  $html .= '<td class="t1-cost">'.$item. '</td>';
+               $k++;
+           }
+           
+           $html .= "</tr>";
+
+        }
+        $i++;
+    }
+      $html .= " </tbody></table>
+          </section>";
+    $html = str_replace("<br />", "", $html);
+    return $html;
+}
+add_shortcode('table', 'my_shortcode_function');
+
 ?>

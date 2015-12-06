@@ -1,6 +1,6 @@
 <?php
 /*
-WP Post Template: Шаблон-Аренда
+WP Post Template: Шаблон-Плитка
 dark-blue background (это шаблон записи)
 */
 ?>
@@ -33,29 +33,31 @@ get_header(); ?>
 	<object type="image/svg+xml" class="c-bg" data="<?php echo get_template_directory_uri(); ?>/images/content/comb_bg.svg" fill="#f00" alt="The image wasn't found"></object>
 	<div class="container">
 		<div class="content-left-menu">
-			<div class="info-menu">
+
+			<div class="cl-text">
+				<div class="cl-logo">
+					<img src="<?php echo get_template_directory_uri();?>/images/content/comp-logo.png" alt=""/><span>ОАО «Ленстройдеталь»</span>
+				</div>
+				<!-- <img src="images/content/pic-vn.jpg" alt="" /> -->
+				<?php echo the_post_thumbnail();?>
+				<p class="left-text">
 <!-- 
-				<ul>
-					<li><a href="#" class="current">Аренда техники</a></li>
-					<li><a href="#">Аренда продукции</a></li>
-				</ul>
+					Плитка <a href="#">компании «Ленстройдеталь»</a> обладает уникальными эксплуатационными свойствами. Так, в климатических условиях Санкт-Петербурга срок эксплуатации нашей плитки более 20 лет, а способность выдерживать большие нагрузки низкая истираемость обеспечивают особую износостойкость и механическую прочность.
+					<br/><br/>
+					В настоящее время ОАО «Ленстройдеталь» производит плитку 12форм, 12 цветов, трех фактур, а также бортовые камни 3 видов, два из которых могут быть цветными.
+					<br/><br/>
+					Кроме того, освоено производство блоков подпорных стен для армогрунтовых насыпей, широко используемых в дорожном строительстве.
+
  -->				
-			 <?php
-				$query = new WP_Query( array( 'category_name' => $cat_slug ) );
-			  ?>
-			 <?php $cur_post_id = get_the_ID();?>
-		    <?php if($query->have_posts() ): ?>
-			    <ul>
-			    <?php while($query->have_posts() ) : $query->the_post();?>    
-						<li>
-						<a <?php if( $cur_post_id == $post->ID ) echo "class='current'";?> href="<?php echo get_permalink();?>"><?php echo the_title(); ?></a>
-						</li>
-			    <?php endwhile; ?>
-			    </ul>
-		    <?php else: ?>
-		       	<p>Контент еще не добавлен!</p>
-		    <?php endif; ?>	 
+				 <?php 
+				    $left_text = rwmb_meta( "rw_left_colum_text");
+				    $left_text = str_replace("<p>", "", $left_text);
+				    echo $left_text = str_replace("</p>", "<br><br>", $left_text);
+				  ?>
+ 				</p>
 			</div>
+				
+				
 		</div>
 		<div class="content-right-info">
             <!-- 
@@ -99,6 +101,7 @@ get_header(); ?>
 		    <?php while(have_posts() ) : the_post();?>    
 				<div class="cr-title">
 					<h1><?php echo the_title(); ?></h1>
+					<a class="cr-but cr-but3" href="#"><i class="cr-calc"></i>Оформить заказ</a>
 					<div class="clear"></div>
 				</div>	
 				<div class="cr-text">	    		 
@@ -108,7 +111,6 @@ get_header(); ?>
 		    <?php else: ?>
 		       	<p>Контент еще не добавлен!</p>
 		    <?php endif; ?>	 
-
 
 		</div>
 

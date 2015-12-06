@@ -12,6 +12,12 @@
 		<!-- если это дочерняя категория,то выводим все записи -->
 		<?php if ($parent_cat != 0): ?>
 
+
+				<?php if($cat_slug == "trotuarnaya-plitka") { 
+					require_once "post-templ-plitka.php";
+					return false;
+				} ?> 
+
 				<?php require_once("single.php");?>
 			
 			<!-- категория каталога в разработке -->
@@ -124,7 +130,6 @@
 
 <!-- если это родительская категория,то выводим самый последний пост и все статьи категории в левой колонке -->
 <?php else:?>
-
 
 
 	<div class="head-center margin-top-block">

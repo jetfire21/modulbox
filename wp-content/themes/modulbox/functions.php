@@ -209,13 +209,46 @@ add_filter('upload_mimes', 'additional_mime_types');
 
 
 
-function filter1 ( $content ) {
-    $content = str_replace("<table", '<section id="flip-scroll"><table', $content);
-    $content = str_replace("table>", 'table></section>', $content);
-   return $content;
+// function filter1 ( $content ) {
+//     $content = str_replace("<table", '<section id="flip-scroll"><table', $content);
+//     $content = str_replace("table>", 'table></section>', $content);
+//    return $content;
+// }
+
+// add_filter( 'the_content', 'filter1' );
+
+
+
+add_theme_support('post-thumbnails'); // поддержка миниатюр
+
+
+
+add_filter( 'rwmb_meta_boxes', 'YOURPREFIX_register_meta_boxes' );
+function YOURPREFIX_register_meta_boxes( $meta_boxes )
+{
+    $prefix = 'rw_';
+    // 1st meta box
+    $meta_boxes[] = array(
+        // 'id'         => 'personal',
+         'title'      => 'Personal Information',
+        'post_types' => array( 'post', 'page' ),
+        // 'context'    => 'normal',
+        'priority'   => 'high',
+        'fields' => array(
+            array(
+                'name'  => 'Full name',
+                'desc'  => 'Format: First Last',
+                'id'    => $prefix . 'left_colum_text',
+                'type'  => 'wysiwyg',
+                'std'   => 'Anh Tran',
+                'class' => 'custom-class',
+                'clone' => false,
+            ),
+        )
+    );
+    return $meta_boxes;
 }
 
-add_filter( 'the_content', 'filter1' );
 
 
 // function my_shortcode_function($atts,$content = null) {
@@ -269,5 +302,8 @@ add_filter( 'the_content', 'filter1' );
 //     return $html;
 // }
 // add_shortcode('table', 'my_shortcode_function');
+
+
+
 
 ?>

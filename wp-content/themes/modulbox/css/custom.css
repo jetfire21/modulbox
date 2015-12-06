@@ -1892,3 +1892,7 @@ input[type="text"].for-ul-select, input[type="text"].for-ul-select2 {
 	max-width: 451px;
 	top: 75px;
 }
+
+.harakter{
+	display: none;
+}

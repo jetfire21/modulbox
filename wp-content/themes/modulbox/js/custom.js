@@ -387,6 +387,20 @@ $(document).ready(function() {
 		$(".row-size td").removeClass("t2-out");
 	};
 	// удаление у ячейки таблицы класса
+
+	$(".cr-tabs .tab-2").click(function (){
+		$("#flip-scroll .modif").hide();
+		$("#flip-scroll .harakter").show();
+		$(".cr-tabs .tab-1").removeClass("tab-current");
+		$(this).addClass("tab-current");
+	});
+
+	$(".cr-tabs .tab-1").click(function (){
+		$("#flip-scroll .modif").show();
+		$("#flip-scroll .harakter").hide();
+		$(".cr-tabs .tab-2").removeClass("tab-current");
+		$(this).addClass("tab-current");
+	});
 	
 });
 

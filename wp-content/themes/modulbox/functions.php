@@ -249,7 +249,17 @@ function YOURPREFIX_register_meta_boxes( $meta_boxes )
     return $meta_boxes;
 }
 
+ function my_shortcode_function($atts,$content = null) {
+    $html = '
+    <div class="cr-tabs">
+        <span class="tab-1 tab-current"><span>Модификации и цены</span></span>
+        <span class="tab-2"><span>Подробные характеристики</span></span>
+        <div class="clear"></div>
+      </div>';
+    return $html;
+ }
 
+ add_shortcode('table-switcher', 'my_shortcode_function');
 
 // function my_shortcode_function($atts,$content = null) {
 //     // var_dump($atts);

@@ -639,8 +639,12 @@ class TablePress_Render {
 			}
 
 			// "class" attribute.
-			$GLOBAL_tabl_class = $css_classes[2];
-			if($GLOBAL_tabl_class == "cr-table3") $GLOBAL_tabl_class = "cr-table2";
+			$css_classes = explode(" ",$css_classes[2]);
+			if($css_classes[0] == "cr-table3") $GLOBAL_tabl_class = "cr-table2";
+		    if($css_classes[0] == "cr-table4") $GLOBAL_tabl_class = "cr-table4";
+
+		 
+
 		switch ($col_idx) {
 			case 0:
 				// $my_col = "t1-name t2-out";
@@ -648,7 +652,6 @@ class TablePress_Render {
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-out";
 				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-width";
 				else $my_col = "t1-name";
-
 			break;
 			case 1:
 				// $my_col = "t1-sost t2-name";
@@ -768,8 +771,8 @@ class TablePress_Render {
 			$row_classes = str_replace("row-info", "", $row_classes);
 			$cell_class = str_replace("t2", "", $cell_class);
 		}
-		 //$row_classes .= " ----".$cell_class."--------"; 
-		
+		 // $row_classes .= " ----".print_r($css_classes)."--------"; 
+	
 
 		if ( $this->render_options['alternating_row_colors'] ) {
 			// $row_classes .= ( 1 === ( $row_idx % 2 ) ) ? ' even' : ' odd';

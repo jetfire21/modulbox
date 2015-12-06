@@ -646,6 +646,7 @@ class TablePress_Render {
 				// $my_col = "t1-name t2-out";
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-name";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-out";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-width";
 				else $my_col = "t1-name";
 
 			break;
@@ -653,12 +654,14 @@ class TablePress_Render {
 				// $my_col = "t1-sost t2-name";
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-sost";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-name";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-dvp";
 				else $my_col = "t1-name";
 				break;
 			case 2:			
 				// $my_col = "t1-cost t2-artik";
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-cost";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-artik";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-dvpo";
 				else $my_col = "t1-name";
 				
 			break;
@@ -666,6 +669,7 @@ class TablePress_Render {
 				 // $my_col = "t1-cost t2-size";
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-cost";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-size";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-vagonka";
 				else $my_col = "t1-name";
 				
 			break;
@@ -673,6 +677,7 @@ class TablePress_Render {
 				 // $my_col = "t1-cost t2-kolm";
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-cost";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-kolm";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-pvh";
 				else $my_col = "t1-name";
 				
 			break;
@@ -680,6 +685,7 @@ class TablePress_Render {
 				 // $my_col = "t1-cost t2-mass";
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-cost";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-mass";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-mdf";
 				else $my_col = "t1-name";
 				
 			break;
@@ -687,11 +693,13 @@ class TablePress_Render {
 				// $my_col = "t1-cost t2-kol";	
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-cos";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-kol";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-ldsp";
 				else $my_col = "t1-name";				
 			break;
 			default:
 				if($GLOBAL_tabl_class == "cr-table1") $my_col = "t1-cos";
 				elseif($GLOBAL_tabl_class == "cr-table2") $my_col = "t2-kol";
+				elseif($GLOBAL_tabl_class == "cr-table4") $my_col = "t4-dvp";
 				else $my_col = "t1-name";	
 		}
 
@@ -709,6 +717,8 @@ class TablePress_Render {
 			 * @param int    $colspan_row  The number of combined columns for this cell.
 			 * @param int    $rowspan_col  The number of combined rows for this cell.
 			 */
+
+
 			$cell_class = apply_filters( 'tablepress_cell_css_class', $cell_class, $this->table['id'], $cell_content, $row_idx + 1, $col_idx + 1, $this->colspan[ $row_idx ], $this->rowspan[ $col_idx ] );
 			if ( ! empty( $cell_class ) ) {
 				$tag_attributes['class'] = $cell_class;
@@ -752,11 +762,13 @@ class TablePress_Render {
 		$row_classes = $my_heading.' row-' . ( $row_idx + 1 ) ;
 
 		
-		  // $row_classes .= " ----".$row_classes."--------"; 
+		  
 		if( preg_match("/colspan/i", $tag_attributes))  {
 			$row_classes .= ( 1 === ( $row_idx % 2 )) ? ' row-type' : ' row-size';
 			$row_classes = str_replace("row-info", "", $row_classes);
+			$cell_class = str_replace("t2", "", $cell_class);
 		}
+		 //$row_classes .= " ----".$cell_class."--------"; 
 		
 
 		if ( $this->render_options['alternating_row_colors'] ) {

@@ -148,6 +148,7 @@
 			<!--<div class="control-prev next"></div>-->
 			<div class="carusel">
 
+
 				<?php
 				/* ****** без плагина Taxonomy Images в рубриках не будет возможности добавить изображение******** */
 				$cat = get_category_by_slug( 'catalog' );
@@ -229,7 +230,9 @@
  -->			
 		    <?php if(have_posts() ): ?>
 		    <?php while(have_posts() ) : the_post();?>    
-		    		<h1><?php echo the_title(); ?></h1>    
+		    		<!-- <h1><?php echo the_title(); ?></h1>     -->
+		    		<!-- <h1><?php get_post_meta("qwe",true);?></h1> -->
+		    		<h1>О компании</h1>
 		           <?php the_content(); ?>
 		    <?php endwhile; ?>
 		    <?php else: ?>

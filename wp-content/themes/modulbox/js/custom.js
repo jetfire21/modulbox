@@ -377,6 +377,16 @@ $('header.resized').css("min-height", $(window).height() + 'px');
 
 
 $(document).ready(function() {
+
+	// удаление у ячейки таблицы класса
+	if( $(".row-type td").hasClass("t2-out") ){
+		$(".row-type td").removeClass("t2-out");
+	};
+
+	if( $(".row-size td").hasClass("t2-out") ){
+		$(".row-size td").removeClass("t2-out");
+	};
+	// удаление у ячейки таблицы класса
 	
 });
 

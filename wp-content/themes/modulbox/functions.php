@@ -231,7 +231,7 @@ function YOURPREFIX_register_meta_boxes( $meta_boxes )
     $meta_boxes[] = array(
         // 'id'         => 'personal',
          'title'      => 'Personal Information',
-        'post_types' => array( 'post', 'page' ),
+        'post_types' => array( 'post' ),
         // 'context'    => 'normal',
         'priority'   => 'high',
         'fields' => array(
@@ -240,7 +240,7 @@ function YOURPREFIX_register_meta_boxes( $meta_boxes )
                 'desc'  => 'Format: First Last',
                 'id'    => $prefix . 'left_colum_text',
                 'type'  => 'wysiwyg',
-                'std'   => 'Anh Tran',
+                'std'   => '',
                 'class' => 'custom-class',
                 'clone' => false,
             ),

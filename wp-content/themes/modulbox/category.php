@@ -18,6 +18,12 @@
 					return false;
 				} ?> 
 
+				<?php if($cat_slug == "bani" or $cat_slug == "sadovye-domiki") { 
+					 require_once "development.php";
+					// echo 111;
+					return false;
+				} ?> 
+
 				<?php require_once("single.php");?>
 			
 			<!-- категория каталога в разработке -->

@@ -1567,6 +1567,7 @@ th {
 
 .pic-right img {
 	margin: 40px auto 0px;
+	max-width: 402px;
 }
 
 /* popup */

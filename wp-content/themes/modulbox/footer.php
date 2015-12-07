@@ -158,5 +158,77 @@
 <span class="modal_close"></span>
 <div id="overlay"></div>   
 
+
+<!-- модальное окно заказа контсрукции --> 
+<div id="modal_form_write2">
+
+	<div class="form-container">
+		<h2 class="fc-h2">Оформить заказ</h2>
+		<p>Наш специалист перезвонит в течении 15 минут</p>
+		<form class="pop-form">
+			<div class="form-left">
+				<fieldset>
+					<legend>Ваше имя</legend>
+					<input type="text"/>
+				</fieldset>
+				<fieldset>
+					<legend>E-mail</legend>
+					<input type="text"/>
+				</fieldset>
+				<fieldset>
+					<legend>Телефон</legend>
+					<input type="text"/>
+				</fieldset>
+			</div>
+			<div class="form-right">
+				<div class="fr-item">
+				<!-- <img class="mb-pic" src="images/content/mb/K2_2a.png" alt=""> -->
+				 <?php
+					 $thumb = get_the_post_thumbnail( $post->ID, "full", array('class' => "mb-pic") );
+					 $thumb = preg_replace("/width=\"[0-9]*\"/i", "", $thumb);
+					 $thumb = preg_replace("/height=\"[0-9]*\"/i", "", $thumb);
+					 if($thumb) echo $thumb;
+				?>
+				<!-- Модульное здание №1 -->
+				<?php 
+				$title_box = get_the_title($post->ID);
+				if( $title_box ) echo $title_box;
+				?>
+				<span>
+				<!-- 105 000 - 118 000  -->
+				<?php $main_price = get_post_meta($post->ID, 'main_price', true); ?>
+				<?php if($main_price):?>
+				<span> <?php echo $main_price;?> <span class="rub">в</span></span>
+				<?php endif;?>
+				<span class="rub">в</span></span></div>
+				<fieldset>
+					<legend>Комментарий</legend>
+					<div class="scroll-pane2" id="chat2">
+					<textarea class="feed" style="height: 500px;"></textarea>
+					</div>
+				</fieldset>
+			</div>
+			<div class="clear"></div>
+			<a class="write-but-pop" href="#"><i class="write-pop"></i>Напишите нам</a>
+		</form>
+	</div>
+	
+</div>
+	
+
+<!-- the Scrollbar script -->
+
+
+<script type="text/javascript" src="<?php echo get_template_directory_uri();?>/js/jquery.nicescroll.min.js"></script>
+
+
+
+<script type="text/javascript">
+	$('textarea').focus(function() {
+		$('#chat2').niceScroll();		
+	});
+
+</script>
+
 </body>
 </html>

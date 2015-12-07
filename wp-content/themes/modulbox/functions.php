@@ -229,17 +229,43 @@ function YOURPREFIX_register_meta_boxes( $meta_boxes )
     $prefix = 'rw_';
     // 1st meta box
     $meta_boxes[] = array(
-        // 'id'         => 'personal',
-         'title'      => 'Personal Information',
+        'id'         => 'personal',
+         'title'      => 'Левая колонка',
         'post_types' => array( 'post' ),
-        // 'context'    => 'normal',
+         'context'    => 'normal',
         'priority'   => 'high',
         'fields' => array(
             array(
-                'name'  => 'Full name',
+                'name'  => 'Встваьте текст',
                 'desc'  => 'Format: First Last',
                 'id'    => $prefix . 'left_colum_text',
                 'type'  => 'wysiwyg',
+                'std'   => '',
+                'class' => 'custom-class',
+                'clone' => false,
+            ),
+        )
+    );
+    return $meta_boxes;
+}
+
+add_filter( 'rwmb_meta_boxes', 'YOURPREFIX_register_meta_boxes2' );
+function YOURPREFIX_register_meta_boxes2( $meta_boxes )
+{
+    $prefix = 'rw_';
+    // 1st meta box
+    $meta_boxes[] = array(
+        'id'         => 'upload_file',
+         'title'      => 'Слайдер',
+        'post_types' => array( 'post' ),
+         'context'    => 'normal',
+        'priority'   => 'high',
+        'fields' => array(
+            array(
+                'name'  => 'Загрузить изображение',
+                'desc'  => 'Добавить новый файл',
+                'id'    => $prefix . 'slider_img',
+                'type'  => 'file',
                 'std'   => '',
                 'class' => 'custom-class',
                 'clone' => false,
@@ -286,12 +312,11 @@ function my_shortcode_function2($atts,$content = null) {
         $url .= wp_get_attachment_url($val).",";
       }    
       $url = mb_substr($url, 0,-1);
-      // $html = "<img src='".$first_img ."' />";
-      // $html .= "<div data-src='".$url."' id='3d-img-url'></div>";
       $path = get_template_directory_uri();
+      if($atts['shema-id']) $img_shema = '<img src="'.wp_get_attachment_url($atts['shema-id']).'" alt=""/>';
       $html = '<div class="pic-block2">
           <div class="pic-left"><img id="product1" src="'.$first_img .'" alt=""/><span class="but360"><img src="'.$path.'/images/content/360.svg" alt=""/></span></div>
-          <div class="pic-right"><img src="'.$path.'/images/content/2_02.png" alt=""/></div>
+          <div class="pic-right">'.$img_shema.'</div>
           <div data-src="'.$url.'" id="3d-img-url"></div>
           <div class="clear"></div>
       </div>';
@@ -303,6 +328,15 @@ function my_shortcode_function2($atts,$content = null) {
 
  add_shortcode('3d-imgs', 'my_shortcode_function2');
 
+function my_shortcode_function3($atts,$content = null) {
+
+
+      $html = '<a class="cr-but clear" href="#"><i class="cr-calc"></i>Оформить заказ</a>';
+        
+    return $html;
+ }
+
+ add_shortcode('button-oformit-zakaz', 'my_shortcode_function3');
 
 // function my_shortcode_function($atts,$content = null) {
 //     // var_dump($atts);

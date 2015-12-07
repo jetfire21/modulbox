@@ -77,6 +77,33 @@ get_header(); ?>
 							<a class="cr-but" href="#"><i class="cr-calc"></i>Оформить заказ</a>
 						<div class="clear"></div>
 					</div> 
+<!-- 					
+					<div class="pic-block">
+						<div class="pic-carusel">
+							<a href="#"><div class="pic-item"><img src="images/content/pic1.jpg" alt=""/></div></a>
+							<a href="#"><div class="pic-item"><img src="images/content/pic2.jpg" alt=""/></div></a>
+							<a href="#"><div class="pic-item"><img src="images/content/pic1.jpg" alt=""/></div></a>
+							<a href="#"><div class="pic-item"><img src="images/content/pic2.jpg" alt=""/></div></a>
+						</div>
+						<div class="clear"></div>
+					</div>
+ -->			
+					<?php
+					  $slider_img = rwmb_meta( "rw_slider_img","type=file");
+					  // print_r($slider_img);
+					 ?>
+					  <?php if($slider_img):?>
+				   	 	<div class="pic-block">
+							<div class="pic-carusel">
+						  <?php foreach ($slider_img as $item):?>
+						   	 	<!-- echo $url = $item['url']; -->
+								<a href="#"><div class="pic-item"><img src="<?php echo $item['url'];?>" alt=""/></div></a>
+						  <?php endforeach;?>
+  						</div>
+						<div class="clear"></div>
+					</div>
+					<?php endif;?>
+
 
 					       <?php the_content(); ?>
 

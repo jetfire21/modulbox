@@ -179,7 +179,8 @@
 			    <ul>
 			    <?php while($query->have_posts() ) : $query->the_post();?>    
 						<li>
-						<a <?php if( $cur_post_id == $post->ID ) echo "class='current'";?> href="<?php echo get_permalink();?>"><?php echo the_title(); ?></a>
+						<a <?php if( $cur_post_id == $post->ID ) echo "class='current'";?> href="<?php echo get_permalink();?>">
+						<?php echo the_title(); ?></a>
 						</li>
 			    <?php endwhile; ?>
 			    </ul>

@@ -41,6 +41,14 @@ get_header(); ?>
 				    <?php while($query->have_posts() ) : $query->the_post();?>    
 							<li>
 								<a class="cl-menu-item <?php if( $cur_post_id == $post->ID ) echo 'cl-active';?>" href="<?php echo get_permalink();?>">
+								<?php
+								if($cat_slug == "modulnye-zdaniya"){
+											 $thumb = get_the_post_thumbnail( $post->ID, "full", array('class' => "mb-pic") );
+											 $thumb = preg_replace("/width=\"[0-9]*\"/i", "", $thumb);
+											 $thumb = preg_replace("/height=\"[0-9]*\"/i", "", $thumb);
+											 echo $thumb;
+								}
+								?>
 								<?php echo the_title(); ?>
 
 								<?php $main_price = get_post_meta($post->ID, 'main_price', true); ?>

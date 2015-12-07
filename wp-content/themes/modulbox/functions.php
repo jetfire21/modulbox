@@ -261,6 +261,49 @@ function YOURPREFIX_register_meta_boxes( $meta_boxes )
 
  add_shortcode('table-switcher', 'my_shortcode_function');
 
+/******* добавляет столбец id картинки в админ панели ********/
+add_filter('manage_media_columns', 'posts_columns_attachment_id', 1);
+add_action('manage_media_custom_column', 'posts_custom_columns_attachment_id', 1, 2);
+
+function posts_columns_attachment_id($defaults){
+    $defaults['wps_post_attachments_id'] = __('ID');
+    return $defaults;
+} //добавляем функцию
+
+function posts_custom_columns_attachment_id($column_name, $id){
+  if($column_name === 'wps_post_attachments_id'){
+  echo $id;
+    }
+}
+/******* добавляет столбец id картинки в админ панели ********/
+
+
+function my_shortcode_function2($atts,$content = null) {
+  if($atts['ids']){
+    $ids = explode(",",$atts['ids']);
+      foreach ( $ids as $k => $val ) {
+        if($k == 0) $first_img = wp_get_attachment_url($val);
+        $url .= wp_get_attachment_url($val).",";
+      }    
+      $url = mb_substr($url, 0,-1);
+      // $html = "<img src='".$first_img ."' />";
+      // $html .= "<div data-src='".$url."' id='3d-img-url'></div>";
+      $path = get_template_directory_uri();
+      $html = '<div class="pic-block2">
+          <div class="pic-left"><img id="product1" src="'.$first_img .'" alt=""/><span class="but360"><img src="'.$path.'/images/content/360.svg" alt=""/></span></div>
+          <div class="pic-right"><img src="'.$path.'/images/content/2_02.png" alt=""/></div>
+          <div data-src="'.$url.'" id="3d-img-url"></div>
+          <div class="clear"></div>
+      </div>';
+      
+  }
+    
+    return $html;
+ }
+
+ add_shortcode('3d-imgs', 'my_shortcode_function2');
+
+
 // function my_shortcode_function($atts,$content = null) {
 //     // var_dump($atts);
 //     $row = explode(";", $content);
